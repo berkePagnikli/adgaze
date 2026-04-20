@@ -1,0 +1,69 @@
+# AdGaze Pipeline Configuration
+
+camera:
+  source: 0                    # 0 = default webcam, or path to video file
+  width: 1280
+  height: 720
+  fps: 30
+
+pipeline:
+  # Stage 0: Motion Detection
+  motion:
+    enabled: true
+    method: "mog2"             # "mog2" or "frame_diff"
+    pixel_change_threshold: 0.02   # fraction of pixels that must change
+    consecutive_idle_frames: 10    # skip downstream after N idle frames
+    mog2_history: 500
+    mog2_var_threshold: 16
+    mog2_detect_shadows: false
+
+  # Stage 1: Person Detection
+  person_detection:
+    enabled: true
+    model_path: "models/person_detector/yolov8n.onnx"
+    input_size: 640
+    confidence_threshold: 0.5
+    nms_threshold: 0.45
+    device: "cpu"              # "cpu" or "cuda"
+
+  # Stage 2: Face Detection
+  face_detection:
+    enabled: true
+    model_path: "models/face_detector/face_detection_yunet_2023mar.onnx"
+    input_size: 320
+    confidence_threshold: 0.7
+    nms_threshold: 0.3
+    device: "cpu"
+
+  # Stage 3: Head Pose Estimation
+  head_pose:
+    enabled: true
+    yaw_threshold: 18.0        # degrees — max yaw to consider "facing ad"
+    pitch_threshold: 18.0      # degrees — max pitch to consider "facing ad"
+
+  # Stage 4: Gaze Estimation (SKIPPED — requires custom trained model)
+  gaze_estimation:
+    enabled: false
+
+  # Stage 5: Engagement Scoring (SKIPPED — requires data collection)
+  engagement_scoring:
+    enabled: false
+
+# Tracker configuration
+tracker:
+  max_lost_frames: 30          # remove track after N frames without detection
+  iou_threshold: 0.3           # min IoU to associate detection with track
+
+# Storage
+storage:
+  database_path: "data/adgaze.db"
+
+# API
+api:
+  host: "0.0.0.0"
+  port: 8000
+
+# Dashboard
+dashboard:
+  host: "0.0.0.0"
+  port: 8501

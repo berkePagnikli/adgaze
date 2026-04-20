@@ -1,0 +1,17 @@
+# Core
+opencv-python
+onnxruntime
+numpy
+pyyaml
+
+# Model download & export
+ultralytics
+
+# API
+fastapi
+uvicorn[standard]
+
+# Dashboard
+streamlit
+pandas
+requests
