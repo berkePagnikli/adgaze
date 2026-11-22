@@ -1,0 +1,14 @@
+# PyTorch with CUDA: install the matching wheel first, e.g.
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+torch>=2.4
+torchvision>=0.19
+ultralytics>=8.4.0          # YOLO26 + ByteTrack
+lap>=0.5                    # ByteTrack assignment
+opencv-python>=4.8          # YuNet (cv2.FaceDetectorYN), video I/O
+numpy
+pandas
+scipy
+safetensors                 # L2CS-Net weights
+sixdrepnet==0.1.6           # 6DRepNet head pose
+l2cs @ git+https://github.com/Ahmednull/L2CS-Net.git@main   # L2CS-Net gaze
+face-detection              # imported by the l2cs package
