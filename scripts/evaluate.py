@@ -26,8 +26,8 @@ from scipy.optimize import linear_sum_assignment
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from pipeline import GT_DIR, RUNS_DIR  # noqa: E402
-from run_pipeline import resolve  # noqa: E402
+from pipeline import GT_DIR, RUNS_DIR
+from run_pipeline import resolve
 
 
 def iou_matrix(a: np.ndarray, b: np.ndarray) -> np.ndarray:
@@ -36,7 +36,7 @@ def iou_matrix(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     ix2 = np.minimum(a[:, None, 2], b[None, :, 2])
     iy2 = np.minimum(a[:, None, 3], b[None, :, 3])
     inter = np.clip(ix2 - ix1, 0, None) * np.clip(iy2 - iy1, 0, None)
-    area = lambda x: (x[:, 2] - x[:, 0]) * (x[:, 3] - x[:, 1])  # noqa: E731
+    area = lambda x: (x[:, 2] - x[:, 0]) * (x[:, 3] - x[:, 1])
     return inter / np.maximum(area(a)[:, None] + area(b)[None, :] - inter, 1e-9)
 
 

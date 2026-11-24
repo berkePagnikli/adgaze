@@ -39,8 +39,8 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from pipeline import SCRIPTS_DIR  # noqa: E402
-from run_pipeline import resolve  # noqa: E402
+from pipeline import SCRIPTS_DIR
+from run_pipeline import resolve
 
 LABEL_COLORS = {1: (60, 200, 60), 0: (60, 60, 230), -1: (160, 160, 160), None: (0, 200, 230)}
 LABEL_NAMES = {1: "LOOKING", 0: "NOT", -1: "IGNORE", None: "?"}

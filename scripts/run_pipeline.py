@@ -16,9 +16,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from pipeline import DATA_DIR, RUNS_DIR, SCRIPTS_DIR  # noqa: E402
-from pipeline.config import Config  # noqa: E402
-from pipeline.pipeline import Pipeline  # noqa: E402
+from pipeline import DATA_DIR, RUNS_DIR, SCRIPTS_DIR
+from pipeline.config import Config
+from pipeline.pipeline import Pipeline
 
 
 def resolve(path: str) -> Path:
